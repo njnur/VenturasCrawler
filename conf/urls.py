@@ -45,8 +45,8 @@ doc_urlpatterns = [
 
 urlpatterns = [
     path('dj-admin/', admin.site.urls),
-    path('api/', include('apps.product.urls'), name='api'),
-    path('', include('core.urls'), name='dev-test'),
+    path('dev/', include('core.urls'), name='dev'),
+    path('', include('apps.product.urls'), name='api'),
 ] + doc_urlpatterns
 
 if settings.DEBUG:

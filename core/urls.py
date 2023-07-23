@@ -7,5 +7,4 @@ app_name = 'core'
 
 urlpatterns = [
     path('ping/', views.PingTestView.as_view(), name="ping"),
-    path('', views.HomeView.as_view(), name="home")
 ]

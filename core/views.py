@@ -4,18 +4,6 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 
 
-class HomeView(APIView):
-    permission_classes = [AllowAny]
-
-    @staticmethod
-    def get(request):
-        return Response({
-            'message': 'Welcome to Venturas Crawler!!'
-        },
-            status=status.HTTP_200_OK
-        )
-
-
 class PingTestView(APIView):
     permission_classes = [AllowAny]
 
