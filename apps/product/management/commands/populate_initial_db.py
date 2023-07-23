@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, no_translations
 from apps.product.models import Product
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 
 class Command(BaseCommand):
@@ -23,11 +23,20 @@ class Command(BaseCommand):
             self.stdout.write("Data already exists")
         else:
             instances_to_create = []
-            with open(os.path.join('apps', 'product', 'management', 'commands', 'populate_initial_db.py'), 'r') as file:
+            with open(os.path.join(BASE_DIR, 'apps', 'product', 'dump_data', 'ss_input_data_sample.jsonl'), 'r') as file:
                 for line in file:
                     data = json.loads(line)
                     if data:
                         instance = Product(
-                            tags_from_description=tags_from_description)
+                            jan=data.get('jan'),
+                            product_name=data.get('product_name'),
+                            attributes=data.get('attributes'),
+                            maker=data.get('maker'),
+                            brand=data.get('brand'),
+                            tags_from_description=data.get('tags_from_description'),
+                            tags_from_review=data.get('tags_from_review'),
+                        )
                         instances_to_create.append(instance)
 
+            Product.objects.bulk_create(instances_to_create)
+            self.stdout.write("Data upload successful")
