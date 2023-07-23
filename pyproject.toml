@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "venturas-crawler"
+version = "0.1.0"
+description = ""
+authors = ["MD Nurujjaman Nur <nur.ruet12@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.3"
+djangorestframework = "^3.14.0"
+django-environ = "^0.10.0"
+django-cors-headers = "^4.2.0"
+psycopg2-binary = "^2.9.6"
+django-filter = "^23.2"
+drf-yasg = "^1.21.7"
+pytest-django = "^4.5.2"
+pytest-cov = "^4.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
