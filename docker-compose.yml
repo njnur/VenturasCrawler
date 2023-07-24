@@ -7,16 +7,16 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     restart: always
     ports:
-      - "5430:5432"
+      - "5431:5432"
     environment:
       POSTGRES_PASSWORD: asdf
       POSTGRES_USER: postgres
-      POSTGRES_DB: venturas-crawler-local-db
+      POSTGRES_DB: venturas-crawler-db
 
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     command:
       - /bin/bash
       - -c
@@ -32,6 +32,8 @@ services:
       - "8080:8080"
     env_file:
       - ./conf/settings/.env
+    environment:
+      DB_HOST: 'db'
     depends_on:
       - db
 

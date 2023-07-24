@@ -4,14 +4,13 @@ import pytest
 pytestmark = pytest.mark.django_db
 
 
-class TestProductView:
+class TestHomeView:
     """
-    Test class for TestAccountViewSet and API's.
-    This class comprises several methods that includes both positive and negative test suits.
+    Test class for TestHomeView and API's.
     """
-    endpoint = '/api/events/'
+    endpoint = '/'
 
-    def test_get_endpoint(self, api_client):
+    def test_get_home(self, api_client):
         """
         Test method to assert the validity and persistence of endpoint with proper responses.
         """

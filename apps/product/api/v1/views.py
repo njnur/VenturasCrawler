@@ -73,5 +73,21 @@ class ReportView(APIView):
     """
     @staticmethod
     def get(request):
+        total_product_count = Product.objects.count()
+        product_name_count = Product.objects.exclude(product_name__isnull=True).exclude(product_name__exact='').count()
+        attributes_count = Product.objects.exclude(attributes__isnull=True).exclude(attributes__exact='').\
+            exclude(attributes__exact=[]).count()
+        maker_count = Product.objects.exclude(maker__isnull=True).exclude(maker__exact='').count()
+        brand_count = Product.objects.exclude(brand__isnull=True).exclude(brand__exact='').count()
+        tags_from_description_count = Product.objects.exclude(tags_from_description__len__gt=0).count()
+        tags_from_review_count = Product.objects.exclude(tags_from_review__len__gt=0).count()
 
-        return Response({"message": "Data retrieved"}, status=HTTP_200_OK)
+        return Response({"message": "Data retrieved for fulfillment rate",
+                         "data": {
+                             "product_name": round((product_name_count/total_product_count), 4),
+                             "attributes": round(attributes_count/total_product_count, 4),
+                             "maker": round(maker_count/total_product_count, 4),
+                             "brand": round(brand_count/total_product_count, 4),
+                             "tags_from_description": round(tags_from_description_count/total_product_count, 4),
+                             "tags_from_review": round(tags_from_review_count/total_product_count, 4),
+                         }}, status=HTTP_200_OK)

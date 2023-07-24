@@ -58,13 +58,13 @@ Check the APIs in Swagger and Redoc (Only in Dev and Stage environment)
 **Redoc**
 
 ```
-http://127.0.0.1:8000/redoc/
+http://<your-host>/redoc/
 ```
 
 **Swagger Doc**
 
 ```
-http://127.0.0.1:8000/doc/
+http://<your-host>/doc/
 ```
 
 ## Built With
